@@ -1,4 +1,4 @@
-Os jogadores e suas participações em copa do mundo
+Todos os Jogos da Steam.
 
 Entrega 1 de trabalho da disciplina Estruturas de Dados II — UNICID Prof. Cid Rodrigues de Andrade
 
@@ -16,23 +16,33 @@ Caio Perez Martins - 42646961
 ________________________________________
 1. Dataset
 1.1 Descrição
-Neste trabalho usaremos a base da FIFA para ver todos os Jogadores e sua participações em jogos da Copa do Mundo, todos os Jogadores, tanto femininos como masculinos. Usaremos a base CSV, e o numero entre 57 a 60 mil linhas.
+Neste trabalho usaremos a base do Kaggle para ver todos os jogos da Steam para pc, independente de genero, criador etc. Usaremos a base CSV, e o numero entre 100k de linhas de dados.
 
 1.2 Fonte
 
-https://www.fifa.com/pt
+[https://www.fifa.com/pt](https://www.kaggle.com/datasets/fronkongames/steam-games-dataset)
 
 1.3 Estrutura dos dados
 
-Ano; (Date)
+IDjogo (int)
 
- competição[masc/fem];
+Nome (String);
 
- id_partida; (id)
+Data_lancamento (date)
  
-seleção; (string)
+Propriet_estimados (int);
 
-jogador. (String)
+pico_CCU (float);
+
+Idade_Exigida (int);
+
+Preco (float)
+
+Contagem_DLC (int)
+
+Sobre_Jogo (String)
+
+Idiomas (String)
 
 Exemplo:
 
@@ -44,18 +54,21 @@ Exemplo:
 - 
 1.4 Justificativa da escolha
   
-Gosto de futebol e tem dados o suficiente para finalizar 
+Utilizamos esta base de dados por gostarmos de jogos e seria algo mais compreensivel de explicar a fazer. 
+Claramente a base de dados pode haver duplicatas e por isso optamos por escolher este ponto, por enfrentar um desafio.
 
 ________________________________________
 2. Estrutura(s) de Árvore Escolhida(s)
 
 2.1 Estrutura(s)
    
-Liste a(s) árvore(s) implementada(s) (ex: BST, AVL, Rubro-Negra, B-Tree, etc.).
+AVL e Rubro-Negra.
 
 2.2 Justificativa técnica
 
-Por que essa(s) estrutura(s) foi(ram) escolhida(s) para este dataset e problema? Considere complexidade, balanceamento, caso de uso.
+Por que essas estruturas foram escolhidas para este dataset e problema? Considere complexidade, balanceamento, caso de uso.
+
+As árvores AVL e Rubro-Negras foram escolhidas por permitirem buscas, inserções e remoções eficientes, com complexidade. A AVL mantém um balanceamento mais rigoroso, enquanto a Rubro-Negra costuma exigir menos ajustes. Ai podemos comparar o desempenho das duas estruturas ao organizar e consultar os mais de 125 mil jogos do dataset da Steam.
 
 2.3 Operações implementadas (Para Entrega 2)
 
