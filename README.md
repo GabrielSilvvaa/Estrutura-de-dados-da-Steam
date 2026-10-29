@@ -20,7 +20,7 @@ Neste trabalho usaremos a base do Kaggle para ver todos os jogos da Steam para p
 
 1.2 Fonte
 
-[https://www.fifa.com/pt](https://www.kaggle.com/datasets/fronkongames/steam-games-dataset)
+(https://www.kaggle.com/datasets/fronkongames/steam-games-dataset)
 
 1.3 Estrutura dos dados
 
