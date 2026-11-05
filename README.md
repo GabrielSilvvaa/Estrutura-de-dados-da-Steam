@@ -180,8 +180,6 @@ rubro_negra.exe --bench
                jogo.h, arvore_ops.h, menu.h, csv.h, tempo.h,
                testes.h, benchmark.h
 /dataset     → steam_games_clean.csv
-/testes      → casos de teste e saída das execuções de --test
-               (testes.h fica em /src porque os mains o incluem)
 /resultados  → resultados_avl.csv, resultados_rubro_negra.csv
 README.md
 ```
