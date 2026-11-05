@@ -130,14 +130,14 @@ Os resultados são gravados em `resultados/resultados_avl.csv` e `resultados/res
 
 | n | Árvore | Tempo de inserção (ms) | Altura | Rotações |
 |---|---|---|---|---|
-| 1.000 | AVL | | | |
-| 1.000 | Rubro-Negra | | | |
-| 5.000 | AVL | | | |
-| 5.000 | Rubro-Negra | | | |
-| 10.000 | AVL | | | |
-| 10.000 | Rubro-Negra | | | |
-| total | AVL | | | |
-| total | Rubro-Negra | | | |
+| 1.000 | AVL |0,088|12,0|700,4|
+| 1.000 | Rubro-Negra |0,079 |12,0 |572,1 |
+| 5.000 | AVL |0,602 |15,0 |3.457,7 |
+| 5.000 | Rubro-Negra |0,457 |15,0 |2.895,5 |
+| 10.000 | AVL |1,387 |16,0 |6.906,7 |
+| 10.000 | Rubro-Negra |1,098 |16,0 |5.795,2 |
+| total | AVL |40,205 |20,2 |87.896,6 |
+| total | Rubro-Negra |28,507 |21,0 |73.364,2 |
 
 **Comparação com O(log n):** ao multiplicar *n* por 10, a altura e o número de comparações devem crescer pouco (aproximadamente +3 níveis, já que log₂10 ≈ 3,3). Isso confirma o comportamento logarítmico esperado.
 
@@ -180,7 +180,6 @@ rubro_negra.exe --bench
                jogo.h, arvore_ops.h, menu.h, csv.h, tempo.h,
                testes.h, benchmark.h
 /dataset     → steam_games_clean.csv
-/resultados  → resultados_avl.csv, resultados_rubro_negra.csv
 README.md
 ```
 
