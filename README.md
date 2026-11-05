@@ -88,18 +88,18 @@ Todos rodam com `--test` e são checados automaticamente.
 
 | # | Cenário | Entrada | Resultado esperado | Status |
 |---|---|---|---|---|
-| 1 | Leitor de CSV | vírgula entre aspas, aspas escapadas, delimitador | campos lidos corretamente | ☐ |
-| 2 | Árvore vazia | busca e remoção sem elementos | busca/remoção retornam nada; tamanho e altura 0 | ☐ |
-| 3 | Um elemento e duplicado | inserir uma chave duas vezes | duplicado recusado, tamanho 1; remoção deixa a árvore vazia | ☐ |
-| 4 | Inserção crescente | 1.000 chaves em ordem crescente | árvore válida a cada passo, altura logarítmica | ☐ |
-| 5 | Inserção decrescente | 1.000 chaves em ordem decrescente | idem | ☐ |
-| 6 | Inserção aleatória | 1.000 chaves embaralhadas | idem, e todas as chaves são encontradas | ☐ |
-| 7 | Remoção crescente | remover todas em ordem crescente | árvore válida a cada passo, termina vazia | ☐ |
-| 8 | Remoção decrescente | remover todas em ordem decrescente | idem | ☐ |
-| 9 | Remoção aleatória | remover todas em ordem aleatória | idem | ☐ |
-| 10 | Remoção repetida da raiz | remover a raiz até esvaziar | propriedades mantidas | ☐ |
-| 11 | Operações mistas | 6.000 inserções, buscas e remoções aleatórias | resultado coerente com um controle simples | ☐ |
-| 12 | Percursos | pré-ordem, em ordem e pós-ordem | visitam todos os nós; em ordem sai crescente por AppID | ☐ |
+| 1 | Leitor de CSV | vírgula entre aspas, aspas escapadas, delimitador | campos lidos corretamente | ✓ |
+| 2 | Árvore vazia | busca e remoção sem elementos | busca/remoção retornam nada; tamanho e altura 0 | ✓ |
+| 3 | Um elemento e duplicado | inserir uma chave duas vezes | duplicado recusado, tamanho 1; remoção deixa a árvore vazia | ✓ |
+| 4 | Inserção crescente | 1.000 chaves em ordem crescente | árvore válida a cada passo, altura logarítmica | ✓ |
+| 5 | Inserção decrescente | 1.000 chaves em ordem decrescente | idem | ✓ |
+| 6 | Inserção aleatória | 1.000 chaves embaralhadas | idem, e todas as chaves são encontradas | ✓ |
+| 7 | Remoção crescente | remover todas em ordem crescente | árvore válida a cada passo, termina vazia | ✓ |
+| 8 | Remoção decrescente | remover todas em ordem decrescente | idem | ✓ |
+| 9 | Remoção aleatória | remover todas em ordem aleatória | idem | ✓ |
+| 10 | Remoção repetida da raiz | remover a raiz até esvaziar | propriedades mantidas | ✓ |
+| 11 | Operações mistas | 6.000 inserções, buscas e remoções aleatórias | resultado coerente com um controle simples | ✓ |
+| 12 | Percursos | pré-ordem, em ordem e pós-ordem | visitam todos os nós; em ordem sai crescente por AppID | ✓ |
 
 ### 3.3 Casos extremos (edge cases)
 
