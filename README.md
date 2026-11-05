@@ -88,8 +88,8 @@ Todos rodam com `--test` e são checados automaticamente.
 
 | # | Cenário | Entrada | Resultado esperado | Status |
 |---|---|---|---|---|
-| 1 | Leitor de CSV | vírgula entre aspas, aspas escapadas, delimitador | campos lidos corretamente | ☐ |
-| 2 | Árvore vazia | busca e remoção sem elementos | busca/remoção retornam nada; tamanho e altura 0 | ☐ |
+| 1 | Leitor de CSV | vírgula entre aspas, aspas escapadas, delimitador | campos lidos corretamente | ☑ |
+| 2 | Árvore vazia | busca e remoção sem elementos | busca/remoção retornam nada; tamanho e altura 0 | ☑|
 | 3 | Um elemento e duplicado | inserir uma chave duas vezes | duplicado recusado, tamanho 1; remoção deixa a árvore vazia | ☐ |
 | 4 | Inserção crescente | 1.000 chaves em ordem crescente | árvore válida a cada passo, altura logarítmica | ☐ |
 | 5 | Inserção decrescente | 1.000 chaves em ordem decrescente | idem | ☐ |
