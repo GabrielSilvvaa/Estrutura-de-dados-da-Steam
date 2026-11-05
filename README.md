@@ -180,7 +180,6 @@ rubro_negra.exe --bench
                jogo.h, arvore_ops.h, menu.h, csv.h, tempo.h,
                testes.h, benchmark.h
 /dataset     → steam_games_clean.csv
-/resultados  → resultados_avl.csv, resultados_rubro_negra.csv
 README.md
 ```
 
