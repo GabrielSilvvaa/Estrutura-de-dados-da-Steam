@@ -72,28 +72,25 @@ As árvores AVL e Rubro-Negras foram escolhidas por permitirem buscas, inserçõ
 
 2.3 Operações implementadas (Para Entrega 2)
 
-	Inserção
-	
-	Remoção
-	
-	Busca
-	
-	Percursos (pré-ordem, em ordem, pós-ordem)
-	
-	Balanceamento (se aplicável)
-	
-	Outra: ______
+ Inserção (recusa AppID duplicado)
+ 
+ Remoção (por AppID)
+ 
+ Busca (por AppID)
+ 
+ Percursos (pré-ordem, em ordem, pós-ordem)
+ 
+ Balanceamento: AVL (rotações simples e duplas, fator de balanceamento) e Rubro-Negra (recoloração e rotações)
+ 
+ Outra: validação das propriedades da árvore, cálculo de altura (e altura negra na rubro-negra), contagem de rotações e de comparações, carga de CSV, testes automáticos e benchmark
+
+ 
 2.4 Complexidade
-
-Tabela com a complexidade assintótica (Big-O) teórica de cada operação implementada, no melhor, médio e pior caso.
-
-Operação	Melhor caso	Caso médio	Pior caso
-
-Inserção	
-
-Busca		
-
-Remoção		
+Operação		Melhor caso				Caso médio		Pior caso
+Inserção		O(log n)				O(log n)		O(log n)
+Busca			O(1) (chave na raiz)	O(log n)		O(log n)
+Remoção			O(log n)				O(log n)		O(log n)
+Percursos		O(n)					O(n)			O(n)
 
 ________________________________________
 
@@ -101,30 +98,50 @@ ________________________________________
 
 3.1 Objetivo dos testes
 
-O que o grupo pretende validar (corretude, desempenho, comportamento em casos extremos, etc.).
+Validar a corretude das operações (inserção, busca, remoção, percursos), a manutenção das propriedades de cada árvore após cada operação, o comportamento em casos extremos e o desempenho em diferentes tamanhos e ordens de entrada.
 
 3.2 Cenários de teste
 
-#	Cenário	Entrada	Resultado esperado	Status
+Todos rodam com --test e são checados automaticamente.
 
-1				☐
-
-2				☐
-
-3				☐
+ Cenário											Entrada							Resultado esperado		Status
+1	Leitor de CSV		 	 |  vírgula entre aspas, aspas escapadas, delimitador |	campos lidos corretamente | ☐
+2	Árvore vazia			 |  busca e remoção sem elementos | busca/remoção retornam nada, tamanho e altura 0 | ☐
+3	Um elemento e duplicado	 | inserir uma chave duas vezes	| duplicado recusado, tamanho 1, remoção deixa a árvore vazia |☐
+4	Inserção crescente		 | 	1.000 chaves em ordem crescente	| árvore válida a cada passo, altura logarítmica | ☐
+5	Inserção decrescente 	 | 	1.000 chaves em ordem decrescente | idem | ☐
+6	Inserção aleatória		 | 	1.000 chaves embaralhadas 	| 	idem, e todas as chaves são encontradas | ☐
+7	Remoção crescente		 | remover todas em ordem crescente	 |	árvore válida a cada passo, termina vazia | ☐
+8	Remoção decrescente	 	 | remover todas em ordem decrescente	| idem | ☐
+9	Remoção aleatória		 | remover todas em ordem aleatória	| idem | ☐
+10	Remoção repetida da raiz | 	remover a raiz até esvaziar	| propriedades mantidas | ☐
+11	Operações mistas		 | 6.000 inserções, buscas e remoções aleatórias | resultado coerente com um controle simples| ☐
+12	Percursos				 | pré, em ordem e pós-ordem | visitam todos os nós; em ordem sai crescente por AppID | ☐
 
 3.3 Casos extremos (edge cases)
 
-Liste casos como: árvore vazia, único elemento, dados duplicados, dados em ordem crescente/decrescente (pior caso para BST), volume máximo do 
-dataset, etc.
+Árvore vazia (busca, remoção e raiz)
+Um único elemento
+AppID duplicado (inserção recusada, tamanho inalterado)
+Remover chave inexistente e remover a mesma chave duas vezes
+Dados em ordem crescente e decrescente (pior caso de uma BST comum, a árvore balanceada deve manter altura logarítmica)
+Remoção sucessiva da raiz
+Volume máximo do dataset (último tamanho do benchmark = todos os AppIDs únicos)
+Registros com vírgula dentro de aspas no CSV
 
 3.4 Testes de desempenho (Para Entrega 2)
 
-Descreva como o grupo mediu tempo de execução e/ou uso de memória, e com quais tamanhos de entrada (ex: 100, 1.000, 10.000 registros).
+O benchmark (--bench) usa os mesmos registros e as mesmas ordens para as duas árvores. Cada medição é repetida (padrão 10 vezes, ajustável com --reps) e a ordem aleatória usa seed fixa (padrão 42, --seed).
+
+Tamanhos de entrada: 1.000, 5.000, 10.000 e o total de AppIDs únicos do dataset
+Cenários de inserção: mediana, crescente, decrescente e aleatório
+O que mede: tempo em ms (inserção, busca, busca de chave inexistente e remoção), número de comparações, número de rotações e altura final
+Como mede o tempo: QueryPerformanceCounter no Windows, e nada é impresso dentro da região cronometrada
+Memória: o projeto não mede uso de memória. Se quiser incluir, cite só o que foi medido.
 
 3.5 Resultados obtidos (Para Entrega 2)
 
-Resuma os resultados (tabelas, gráficos ou links para arquivos de saída na pasta /resultados) e compare-os com a complexidade assintótica (Big-O) teórica.
+Os resultados saem em resultados/resultados_avl.csv e resultados/resultados_rubro_negra.csv. [PREENCHER] com uma tabela resumo (n × tempo de inserção, altura e rotações por árvore) e uma comparação com O(log n): se ao multiplicar n por 10 a altura e as comparações crescem pouco, isso confirma o comportamento logarítmico. Rode --bench para gerar os números.
 
 ________________________________________
 
@@ -132,32 +149,59 @@ ________________________________________
    
 4.1 Pré-requisitos (Para Entrega 2)
 
-Linguagem, versão e dependências necessárias.
+Linguagem C (padrão C11)
+Compilador GCC (MinGW) ou Code::Blocks no Windows
+Nenhuma biblioteca externa
+Arquivo steam_games_clean.csv na pasta /dataset [confirme o nome do dataset do grupo]
 
 4.2 Instruções (Para Entrega 2)
 
 # Exemplo
 
 git clone <link-do-repositorio>
+cd <pasta>/src
 
-cd <pasta>
+gcc -std=c11 -O2 -o avl avl_main.c
+gcc -std=c11 -O2 -o rubro_negra rubro_negra_main.c
 
-# comandos de compilação/execução
+avl.exe                (menu interativo)
+avl.exe --test         (testes)
+avl.exe --bench        (benchmark, grava em ../resultados)
+rubro_negra.exe --test
+rubro_negra.exe --bench
 
 4.3 Estrutura do repositório (já com pastas para a Entrega 2)
 
-/src         → código-fonte
+/src         → avl.h, avl_main.c, rubro_negra.h, rubro_negra_main.c,
+               jogo.h, arvore_ops.h, menu.h, csv.h, tempo.h, testes.h, benchmark.h
+/dataset     → steam_games_clean.csv
+/testes      → testes.h fica em /src porque os mains o incluem; aqui vão os
+               casos e a saída das execuções de --test
+/resultados  → resultados_avl.csv, resultados_rubro_negra.csv
 
-/dataset     → dataset utilizado
+4.4 videos dos testes
 
-/testes      → scripts e casos de teste
 
-/resultados  → saídas e relatórios de desempenho
+https://github.com/user-attachments/assets/1ddcce29-c8a9-4852-8b35-c1ba2f1213fb
+
+
+https://github.com/user-attachments/assets/26231ac8-03cc-41a6-961b-14bd65294f8e
+
 
 README.md
-
 ________________________________________
 
 5. Referências
 
-Bibliografia, artigos ou materiais consultados.
+CORMEN, T. H. et al. Algoritmos: Teoria e Prática. (capítulo de árvores rubro-negras)
+Documentação do dataset (Steam Games) na fonte do Kaggle
+Slides das aula da Estrutura de dados
+Youtube link do video: https://youtu.be/nvTd4uw2wU0?si=NYEB5O1ewWQoULt5
+https://youtu.be/Y1jSx3lT8r8?si=TTBULtqLyioc9kNg
+https://youtu.be/aTM2buXQbq8?si=NmNegJ83rZlwOGbr
+https://youtu.be/yUf1AGSXYzg?si=CmNeyV9NFLK3QqVs
+
+
+
+
+
